@@ -34,18 +34,10 @@ type Agent struct {
 	Error         *Error
 }
 
-type options struct {
+type Config struct {
 	Address     string
 	Fingerprint string
 	Timeout     time.Duration
-}
-
-type Option func(*options)
-
-func defaultOptions() options {
-	return options{
-		Timeout: 5 * time.Second,
-	}
 }
 
 func gatewayFromProto(g *pb.GatewayResponse) *Gateway {

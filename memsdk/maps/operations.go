@@ -12,12 +12,7 @@ type Client struct {
 	grpc *pkg.Client
 }
 
-func New(opts ...Option) (*Client, error) {
-	cfg := defaultOptions()
-	for _, o := range opts {
-		o(&cfg)
-	}
-
+func New(cfg Config) (*Client, error) {
 	if cfg.Address == "" {
 		return nil, errors.New("address must be set")
 	}
