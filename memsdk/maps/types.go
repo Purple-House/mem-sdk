@@ -1,8 +1,6 @@
 package maps
 
 import (
-	"time"
-
 	pb "github.com/Purple-House/mem-sdk/memsdk/protobuf"
 )
 
@@ -32,12 +30,6 @@ type Agent struct {
 	GatewayDomain string
 	Capacity      Capacity
 	Error         *Error
-}
-
-type Config struct {
-	Address     string
-	Fingerprint string
-	Timeout     time.Duration
 }
 
 func gatewayFromProto(g *pb.GatewayResponse) *Gateway {

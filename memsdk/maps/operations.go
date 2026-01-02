@@ -12,7 +12,7 @@ type Client struct {
 	grpc *pkg.Client
 }
 
-func New(cfg Config) (*Client, error) {
+func NewSdkOperation(cfg pkg.Config) (*Client, error) {
 	if cfg.Address == "" {
 		return nil, errors.New("address must be set")
 	}
