@@ -45,3 +45,25 @@ func (c *Client) ResolveGatewayForAgent(ctx context.Context, region string) ([]G
 	}
 	return out, nil
 }
+
+func (c *Client) Addgateway(ctx context.Context, gateway_ip string, gateway_port int32, gateway_domain string) (Gateway, error) {
+	gateway := &pb.GatewayPutRequest{
+		GatewayIp:     gateway_ip,
+		GatewayDomain: gateway_domain,
+		GatewayPort:   gateway_port,
+		Region:        "global",
+		Capacity: &pb.Capacity{
+			Cpu:       1,
+			Bandwidth: 20,
+			Memory:    4096,
+			Storage:   40960,
+		},
+	}
+
+	resp, err := c.grpc.RegisterGateway(ctx, gateway)
+	if err != nil {
+		return Gateway{}, err
+	}
+
+	return *gatewayFromProto(resp), nil
+}
