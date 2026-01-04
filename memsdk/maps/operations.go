@@ -46,12 +46,12 @@ func (c *Client) ResolveGatewayForAgent(ctx context.Context, region string) ([]G
 	return out, nil
 }
 
-func (c *Client) Addgateway(ctx context.Context, gateway_ip string, gateway_port int32, gateway_domain string) (Gateway, error) {
+func (c *Client) Addgateway(ctx context.Context, region string, gateway_ip string, gateway_port int32, gateway_domain string, credhash string) (Gateway, error) {
 	gateway := &pb.GatewayPutRequest{
-		GatewayIp:     gateway_ip,
-		GatewayDomain: gateway_domain,
-		GatewayPort:   gateway_port,
-		Region:        "global",
+		Region:             region,
+		GatewayIp:          gateway_ip,
+		GatewayPort:        gateway_port,
+		VerifiableCredHash: credhash,
 		Capacity: &pb.Capacity{
 			Cpu:       1,
 			Bandwidth: 20,
@@ -68,12 +68,13 @@ func (c *Client) Addgateway(ctx context.Context, gateway_ip string, gateway_port
 	return *gatewayFromProto(resp), nil
 }
 
-func (c *Client) ConnectAgent(ctx context.Context, agent_domain string, gateway_id string, gateway_domain string) (Agent, error) {
+func (c *Client) ConnectAgent(ctx context.Context, agent_domain string, gateway_id string, gateway_domain string, creadhash string, region string) (Agent, error) {
 
 	agentReq := &pb.AgentConnectionRequest{
-		AgentDomain: agent_domain,
-		GatewayId:   gateway_id,
-		Domain:      gateway_domain,
+		AgentDomain:        agent_domain,
+		GatewayId:          gateway_id,
+		VerifiableCredHash: creadhash,
+		Region:             region,
 	}
 
 	resp, err := c.grpc.RegisterAgent(ctx, agentReq)
