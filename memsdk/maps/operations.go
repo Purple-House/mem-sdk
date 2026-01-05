@@ -33,19 +33,6 @@ func (c *Client) Close() error {
 	return c.grpc.Close()
 }
 
-func (c *Client) ResolveGatewayForAgent(ctx context.Context, region string) ([]Gateway, error) {
-	res, err := c.grpc.ResolveGatewayForAgent(ctx, &pb.GatewayHandshake{Region: region})
-	if err != nil {
-		return nil, err
-	}
-
-	var out []Gateway
-	for _, g := range res.Gateways {
-		out = append(out, *gatewayFromProto(g))
-	}
-	return out, nil
-}
-
 func (c *Client) Addgateway(ctx context.Context, region string, gateway_ip string, gateway_port int32, credhash string) (Gateway, error) {
 	gateway := &pb.GatewayPutRequest{
 		Region:             region,
@@ -99,4 +86,18 @@ func (c *Client) GetGatewayInfo(ctx context.Context, region string) ([]Gateway, 
 		out = append(out, *gatewayFromProto(g))
 	}
 	return out, nil
+}
+
+func (c *Client) GetAgentProxyMapping(ctx context.Context, region string, domain string) (Gateway, error) {
+
+	agentReq := &pb.GatewayProxy{
+		AgentDomain: domain,
+		Region:      region,
+	}
+
+	resp, err := c.grpc.ResolveGatewayForProxy(ctx, agentReq)
+	if err != nil {
+		return Gateway{}, err
+	}
+	return *gatewayFromProto(resp), nil
 }
