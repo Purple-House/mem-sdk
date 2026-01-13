@@ -101,7 +101,7 @@ func (c *Client) ResolveGatewayForAgent(ctx context.Context, req *pb.GatewayHand
 	return c.rpc.ResolveGatewayForAgent(ctx, req)
 }
 
-func (c *Client) ResolveGatewayForProxy(ctx context.Context, req *pb.GatewayProxy) (*pb.GatewayResponse, error) {
+func (c *Client) ResolveGatewayForProxy(ctx context.Context, req *pb.ProxyMapping) (*pb.AgentResponse, error) {
 	ctx, cancel := c.ctx(ctx)
 	defer cancel()
 	return c.rpc.ResolveGatewayForProxy(ctx, req)

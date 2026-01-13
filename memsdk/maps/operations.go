@@ -97,16 +97,16 @@ func (c *Client) GetGatewayInfo(ctx context.Context, region string) ([]Gateway, 
 	return out, nil
 }
 
-func (c *Client) GetAgentProxyMapping(ctx context.Context, region string, domain string) (Gateway, error) {
+func (c *Client) GetAgentProxyMapping(ctx context.Context, region string, domain string) (Agent, error) {
 
-	agentReq := &pb.GatewayProxy{
+	agentReq := &pb.ProxyMapping{
 		AgentDomain: domain,
 		Region:      region,
 	}
 
 	resp, err := c.grpc.ResolveGatewayForProxy(ctx, agentReq)
 	if err != nil {
-		return Gateway{}, err
+		return Agent{}, err
 	}
-	return *gatewayFromProto(resp), nil
+	return *agentFromProto(resp), nil
 }

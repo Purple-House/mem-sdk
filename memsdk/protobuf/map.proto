@@ -11,7 +11,7 @@ service Maps {
     rpc RegisterGateway (GatewayPutRequest) returns  (GatewayResponse);
     rpc RegisterAgent (AgentConnectionRequest) returns (AgentResponse);
     rpc ResolveGatewayForAgent (GatewayHandshake) returns (MultipleGateways);
-    rpc ResolveGatewayForProxy (GatewayProxy) returns (GatewayResponse);
+    rpc ResolveGatewayForProxy (ProxyMapping) returns (AgentResponse);
 }
 
 
@@ -75,6 +75,7 @@ message AgentResponse {
     string gateway_ip = 8;
     Error error = 9;
     string Identity = 10;
+
 }
 
 message GatewayHandshake {
@@ -86,7 +87,7 @@ message MultipleGateways {
     Error error = 2;
 }
 
-message GatewayProxy {
+message ProxyMapping {
     string agent_domain = 1;
     string region = 2;
     string proxy_id = 3;
