@@ -76,13 +76,7 @@ func agentFromProto(a *pb.AgentResponse) *Agent {
 		GatewayPort:    a.GatewayPort,
 		WssPort:        a.WssPort,
 		Identity:       a.Identity,
-		Capacity: Capacity{
-			CPU:       a.Capacity.Cpu,
-			Memory:    a.Capacity.Memory,
-			Storage:   a.Capacity.Storage,
-			Bandwidth: a.Capacity.Bandwidth,
-		},
-		Error: errorFromProto(a.Error),
+		Error:          errorFromProto(a.Error),
 	}
 }
 
