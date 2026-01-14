@@ -13,7 +13,7 @@ import (
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/metadata"
 
-	pb "github.com/Purple-House/mem-sdk/memsdk/protobuf"
+	pb "github.com/odio4u/mem-sdk/memsdk/protobuf"
 )
 
 type Config struct {

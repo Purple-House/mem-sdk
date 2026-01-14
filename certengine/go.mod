@@ -1,3 +1,3 @@
-module github.com/Purple-House/mem-sdk/certengine
+module github.com/odio4u/mem-sdk/certengine
 
 go 1.25.5

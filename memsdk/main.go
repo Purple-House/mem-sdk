@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/Purple-House/mem-sdk/memsdk/maps"
-	"github.com/Purple-House/mem-sdk/memsdk/pkg"
+	"github.com/odio4u/mem-sdk/memsdk/maps"
+	"github.com/odio4u/mem-sdk/memsdk/pkg"
 )
 
 func main() {

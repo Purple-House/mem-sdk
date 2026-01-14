@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/Purple-House/mem-sdk/memsdk/pkg"
-	pb "github.com/Purple-House/mem-sdk/memsdk/protobuf"
+	"github.com/odio4u/mem-sdk/memsdk/pkg"
+	pb "github.com/odio4u/mem-sdk/memsdk/protobuf"
 )
 
 type Client struct {
