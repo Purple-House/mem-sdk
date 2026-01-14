@@ -1,7 +1,7 @@
 package maps
 
 import (
-	pb "github.com/odio4u/mem-sdk/memsdk/protobuf"
+	pb "github.com/odio4u/agni-schema/maps"
 )
 
 type Error struct {

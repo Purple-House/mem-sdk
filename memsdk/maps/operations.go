@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
+	pb "github.com/odio4u/agni-schema/maps"
 	"github.com/odio4u/mem-sdk/memsdk/pkg"
-	pb "github.com/odio4u/mem-sdk/memsdk/protobuf"
 )
 
 type Client struct {
