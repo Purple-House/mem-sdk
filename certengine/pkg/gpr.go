@@ -6,7 +6,6 @@ import (
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"errors"
-	"log"
 	"net"
 	"strings"
 	"time"
@@ -60,7 +59,7 @@ func GenerateSelfSignedGPR(commonName string, ipList, dnsList []string) ([]byte,
 	Must(writePem("server.pem", "CERTIFICATE", der))
 	Must(writePem("server-key.pem", "PRIVATE KEY", privBytes))
 
-	log.Printf("Server Private Key Fingerprint: %s", fingerprint(privBytes))
+	// log.Printf("Server Private Key Fingerprint: %s", fingerprint(privBytes))
 
 	return der, nil
 }
